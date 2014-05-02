@@ -1,0 +1,24 @@
+#!/usr/bin/python
+
+import random
+
+letters = {}
+letters["lefthand"] = "qwertasdfgyxcvb"
+letters["righthand"] = "zuiophjklbnm"
+
+pw_length = 8
+pw = ""
+
+currenthand = "righthand"
+
+for i in range(pw_length):
+    if currenthand == "righthand":
+        currenthand = "lefthand"
+    else:
+        currenthand = "righthand"
+    next_letter = random.choice(letters[currenthand])
+    pw = pw + next_letter
+
+print(pw)
+
+
