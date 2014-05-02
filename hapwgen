@@ -2,23 +2,32 @@
 
 import random
 
-letters = {}
-letters["lefthand"] = "qwertasdfgyxcvb"
-letters["righthand"] = "zuiophjklbnm"
+class EasyPassword(object):
 
-pw_length = 8
-pw = ""
+    # let's use y as a phonetic vowel here...
+    vowels_lefthand = "aey"
+    vowels_righthand = "iou"
+    consonants_lefthand = "qwrtsdfgxcvb"
+    consonants_righthand = "zhnjmklp"
+    numbers_lefthand = "123456"
+    numbers_righthand = "7890"
 
-currenthand = "righthand"
+    def __init__(self):
+        self.result = ""
+        self.buildpassword()
+        print self.result
 
-for i in range(pw_length):
-    if currenthand == "righthand":
-        currenthand = "lefthand"
-    else:
-        currenthand = "righthand"
-    next_letter = random.choice(letters[currenthand])
-    pw = pw + next_letter
+    def buildpassword(self):
+        self.result += random.choice(self.consonants_righthand)
+        self.result += random.choice(self.vowels_lefthand)
+        self.result += random.choice(self.consonants_righthand)
+        self.result += random.choice(self.consonants_lefthand)
+        self.result += random.choice(self.vowels_righthand)
+        self.result += random.choice(self.consonants_lefthand)
+        self.result += random.choice(self.numbers_righthand)
+        self.result += random.choice(self.numbers_lefthand)
 
-print(pw)
+
+a = EasyPassword()
 
 
