@@ -11,6 +11,7 @@ class EasyPassword(object):
     consonants_righthand = "zhnjmklp"
     numbers_lefthand = "123456"
     numbers_righthand = "7890"
+    special_characters = ",.-#+=%$!"
 
     def __init__(self):
         self.result = ""
@@ -21,9 +22,13 @@ class EasyPassword(object):
         self.result += random.choice(self.consonants_righthand)
         self.result += random.choice(self.vowels_lefthand)
         self.result += random.choice(self.consonants_righthand)
+        self.result += random.choice(self.vowels_lefthand)
+        self.result += random.choice(self.consonants_righthand)
         self.result += random.choice(self.consonants_lefthand)
         self.result += random.choice(self.vowels_righthand)
         self.result += random.choice(self.consonants_lefthand)
+        self.result += random.choice(self.special_characters)
+        self.result += random.choice(self.numbers_lefthand)
         self.result += random.choice(self.numbers_righthand)
         self.result += random.choice(self.numbers_lefthand)
 
