@@ -1,10 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
 import random
 
 class EasyPassword(object):
 
     # let's use y as a phonetic vowel here...
+    # this is only for layouts with "y" in the lower left corner ;)
     vowels_lefthand = "aey"
     vowels_righthand = "iou"
     consonants_lefthand = "qwrtsdfgxcvb"
@@ -13,24 +14,25 @@ class EasyPassword(object):
     numbers_righthand = "7890"
     special_characters = ",.-#+=%$!"
 
-    def __init__(self):
+    def __init__(self,pwlength=12):
         self.result = ""
+        self.pwlength = pwlength
         self.buildpassword()
         print self.result
 
     def buildpassword(self):
-        self.result += random.choice(self.consonants_righthand)
-        self.result += random.choice(self.vowels_lefthand)
-        self.result += random.choice(self.consonants_righthand)
-        self.result += random.choice(self.vowels_lefthand)
-        self.result += random.choice(self.consonants_righthand)
-        self.result += random.choice(self.consonants_lefthand)
-        self.result += random.choice(self.vowels_righthand)
-        self.result += random.choice(self.consonants_lefthand)
-        self.result += random.choice(self.special_characters)
-        self.result += random.choice(self.numbers_lefthand)
-        self.result += random.choice(self.numbers_righthand)
-        self.result += random.choice(self.numbers_lefthand)
+        # we put lefts and rights in lists to pick a set randomly
+        lefts = [ self.vowels_lefthand, self.consonants_lefthand, self.numbers_lefthand ]
+        rights = [ self.vowels_righthand,  self.consonants_righthand, self.numbers_righthand ]
+
+        for count in range(0,self.pwlength):
+            if count % 2 == 0:
+                group = rights
+            elif random.randint(0,self.pwlength) % 2 == 0:
+                group = self.special_characters
+            else:
+                group = lefts
+            self.result += random.choice(random.choice(group))
 
 
 a = EasyPassword()
